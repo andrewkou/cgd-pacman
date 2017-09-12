@@ -56,11 +56,23 @@ public class PacmanMove : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D co)
 	{
-		if (dots.Length == 0) {
+		if (allGone() == true) {
 			gameOver ();
+			print ("you done boi");
 		}
 	}
 
+	bool allGone()
+	{
+		for (int i=0; i<dots.Length;i++)
+		{
+			if(dots[i] != null)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 	void gameOver(){
 		//Application.LoadLevel (Application.loadedLevel);
 		FindObjectOfType<GameManager>().EndGame();
